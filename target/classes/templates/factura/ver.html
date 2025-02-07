@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<style type="text/css">
+body {
+	font-family: 'Arial', sans-serif;
+	background: linear-gradient(135deg, #ffa07a, #ff7f50);
+	/* Degradado en color salmón */
+	margin: 0;
+	padding: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.invoice-box {
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 800px;
+	box-sizing: border-box;
+}
+
+.invoice-box h1, .invoice-box h3, .invoice-box h4, .invoice-box th {
+	color: white; /* Texto en color blanco */
+}
+
+.invoice-box h1 {
+	margin: 0;
+	background-color: #ff7f50; /* Fondo para el título */
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.customer-details {
+	background-color: #ff6347;
+	/* Fondo en color más oscuro para detalles del cliente */
+	padding: 10px;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+
+.customer-details h4 {
+	margin: 0 0 10px 0;
+}
+
+.customer-details p {
+	margin: 5px 0;
+}
+
+.highlighted-text {
+	font-size: 18px; /* Tamaño de fuente más grande para destacar */
+	font-weight: bold; /* Texto en negrita */
+	color: #333; /* Color más oscuro */
+}
+
+.invoice-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.invoice-table th, .invoice-table td {
+	padding: 10px;
+	border: 1px solid #ddd;
+	text-align: left;
+}
+
+.invoice-table th {
+	background-color: #ff7f50;
+	/* Cabeceras de la tabla en color salmón oscuro */
+}
+
+.invoice-table td {
+	color: #333; /* Texto de las celdas en color oscuro para resaltar */
+	background-color: #f9f9f9; /* Fondo claro en las celdas */
+}
+
+.total {
+	text-align: right;
+	color: white; /* Texto en color blanco */
+}
+
+.total h4 {
+	margin: 0;
+	background-color: #ff7f50;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+@media ( max-width : 600px) {
+	.invoice-box {
+		padding: 10px;
+	}
+	.invoice-table th, .invoice-table td {
+		font-size: 12px;
+		padding: 5px;
+	}
+}
+</style>
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}">Factura</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Para la adaptabilidad -->
+</head>
+<body>
+	<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}">Factura</title>
+</head>
+<body>
+	<div class="invoice-box">
+		<h1 th:text="${titulo}">Factura de Compra</h1>
+		<h3 th:utext="${factura.descripcion}">Factura Deporte del
+			cliente: Andrés José</h3>
+		<div class="customer-details">
+			<h4>Cliente</h4>
+			<p>
+				Nombre: <span
+					th:utext="${factura.cliente.nombre + ' ' + factura.cliente.apellido}">Andrés
+					José Guzmán</span>
+			</p>
+			<p>Factura Deporte del cliente: Andrés José</p>
+		</div>
+		<h4>Detalle de la factura</h4>
+		<table class="invoice-table">
+			<thead>
+				<tr>
+					<th>Producto</th>
+					<th>Precio</th>
+					<th>Cantidad</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Monitor LG LCD 24</td>
+					<td>250 €</td>
+					<td>2</td>
+					<td>500 €</td>
+				</tr>
+				<tr>
+					<td>Notebook Asus</td>
+					<td>500 €</td>
+					<td>1</td>
+					<td>500 €</td>
+				</tr>
+				<tr>
+					<td>Impresora HP Multifuncional</td>
+					<td>80 €</td>
+					<td>1</td>
+					<td>80 €</td>
+				</tr>
+				<tr>
+					<td>Escritorio Oficina</td>
+					<td>300 €</td>
+					<td>1</td>
+					<td>300 €</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="total">
+			<h4>Total: 1380 €</h4>
+		</div>
+	</div>
+</body>
+</html>
+
