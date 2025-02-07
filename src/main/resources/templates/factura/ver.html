@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title th:text="${titulo}"></title>
-<style type="text/css">
+<title th:text="${titulo}">Factura</title>
+<style>
 body {
 	font-family: 'Arial', sans-serif;
 	background: linear-gradient(135deg, #ffa07a, #ff7f50);
@@ -26,8 +26,9 @@ body {
 	box-sizing: border-box;
 }
 
-.invoice-box h1, .invoice-box h3, .invoice-box h4, .invoice-box th {
-	color: white; /* Texto en color blanco */
+.invoice-box h1, .invoice-box h3, .invoice-box h4, .invoice-box th,
+	.highlighted-text {
+	color: #333; /* Texto en color más oscuro para destacar */
 }
 
 .invoice-box h1 {
@@ -83,7 +84,7 @@ body {
 
 .total {
 	text-align: right;
-	color: white; /* Texto en color blanco */
+	color: #333; /* Texto en color más oscuro */
 }
 
 .total h4 {
@@ -103,18 +104,6 @@ body {
 	}
 }
 </style>
-<head>
-<meta charset="UTF-8">
-<title th:text="${titulo}">Factura</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Para la adaptabilidad -->
-</head>
-<body>
-	<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title th:text="${titulo}">Factura</title>
 </head>
 <body>
 	<div class="invoice-box">
@@ -123,12 +112,13 @@ body {
 			cliente: Andrés José</h3>
 		<div class="customer-details">
 			<h4>Cliente</h4>
-			<p>
+			<p class="highlighted-text">
 				Nombre: <span
 					th:utext="${factura.cliente.nombre + ' ' + factura.cliente.apellido}">Andrés
 					José Guzmán</span>
 			</p>
-			<p>Factura Deporte del cliente: Andrés José</p>
+			<p class="highlighted-text">Factura Deporte del cliente: Andrés
+				José</p>
 		</div>
 		<h4>Detalle de la factura</h4>
 		<table class="invoice-table">
@@ -141,11 +131,11 @@ body {
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Monitor LG LCD 24</td>
-					<td>250 €</td>
-					<td>2</td>
-					<td>500 €</td>
+				<tr th:each="item: ${factura.items}">
+					<td th:text="${item.producto.nombre}">Monitor LG LCD 24</td>
+					<td th:text="${item.producto.precio}">250 €</td>
+					<td th:text="${item.cantidad}">2</td>
+					<td th:text="${item.calcularImporte()}">500 €</td>
 				</tr>
 				<tr>
 					<td>Notebook Asus</td>
@@ -173,4 +163,3 @@ body {
 	</div>
 </body>
 </html>
-
